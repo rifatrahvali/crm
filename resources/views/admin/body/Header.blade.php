@@ -13,8 +13,8 @@
         </form>
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <i data-feather="grid"></i>
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="appsDropdown">
@@ -70,8 +70,8 @@
                     <div class="p-1">
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div class="me-3">
-                                <img class="wd-30 ht-30 rounded-circle"
-                                    src="https://via.placeholder.com/30x30" alt="userr">
+                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                                    alt="userr">
                             </div>
                             <div class="d-flex justify-content-between flex-grow-1">
                                 <div class="me-4">
@@ -83,8 +83,8 @@
                         </a>
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div class="me-3">
-                                <img class="wd-30 ht-30 rounded-circle"
-                                    src="https://via.placeholder.com/30x30" alt="userr">
+                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                                    alt="userr">
                             </div>
                             <div class="d-flex justify-content-between flex-grow-1">
                                 <div class="me-4">
@@ -96,8 +96,8 @@
                         </a>
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div class="me-3">
-                                <img class="wd-30 ht-30 rounded-circle"
-                                    src="https://via.placeholder.com/30x30" alt="userr">
+                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                                    alt="userr">
                             </div>
                             <div class="d-flex justify-content-between flex-grow-1">
                                 <div class="me-4">
@@ -109,8 +109,8 @@
                         </a>
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div class="me-3">
-                                <img class="wd-30 ht-30 rounded-circle"
-                                    src="https://via.placeholder.com/30x30" alt="userr">
+                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                                    alt="userr">
                             </div>
                             <div class="d-flex justify-content-between flex-grow-1">
                                 <div class="me-4">
@@ -122,8 +122,8 @@
                         </a>
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div class="me-3">
-                                <img class="wd-30 ht-30 rounded-circle"
-                                    src="https://via.placeholder.com/30x30" alt="userr">
+                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                                    alt="userr">
                             </div>
                             <div class="d-flex justify-content-between flex-grow-1">
                                 <div class="me-4">
@@ -176,8 +176,8 @@
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div
                                 class="wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3">
-                                <img class="wd-30 ht-30 rounded-circle"
-                                    src="https://via.placeholder.com/30x30" alt="userr">
+                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                                    alt="userr">
                             </div>
                             <div class="flex-grow-1 me-2">
                                 <p>New customer registered</p>
@@ -213,14 +213,24 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
-                        alt="profile">
+
+                    @if (!empty(Auth::user()->photo))
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <img class="wd-30 ht-30 rounded-circle"
+                                src="{{ asset('upload/'.Auth::user()->photo) }}"
+                                alt="profile">
+                        </div>
+                    </div>
+                    @endif
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
                     <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                         <div class="mb-3">
-                            <img class="wd-80 ht-80 rounded-circle" src="https://via.placeholder.com/80x80"
-                                alt="">
+                            @if (!empty(Auth::user()->photo))
+                            <img class="wd-80 ht-80 rounded-circle" src="{{ asset('upload/'.Auth::user()->photo) }}" alt="">
+                            @endif
                         </div>
                         <div class="text-center">
                             <p class="tx-16 fw-bolder">{{ Auth::user()->name }}</p>

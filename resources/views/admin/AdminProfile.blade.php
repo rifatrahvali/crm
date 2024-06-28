@@ -8,45 +8,54 @@
         <div class="col-md-4 col-xl-3 left-wrapper">
             <div class="card">
                 <img class="card-img-top"
-                    src="{{ !empty($adminData->profile_image) ? url('upload/admin_images/' . $adminData->profile_image) : url('upload/image.png') }}">
+                    src="{{ !empty($getRecord->photo) ? url('upload/' . $getRecord->photo) : url('upload/no-profile.png') }}">
                 <div class="card-body">
                     <div class="mt-3">
                         <label class="tx-11 fw-bolder mb-0 text-uppercase">İsim Soyisim</label>
-                        <p class="text-muted">{{ Auth::user()->name }}</p>
+                        <p class="text-muted">{{ $getRecord->name }}</p>
+                    </div>
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">Hakkımda</label>
+                        <p class="text-muted">{{ $getRecord->about }}</p>
                     </div>
                     <div class="mt-3">
                         <label class="tx-11 fw-bolder mb-0 text-uppercase">Yetki</label>
-                        <p class="text-muted">{{ Auth::user()->role }}</p>
+                        <p class="text-muted">{{ $getRecord->role }}</p>
                     </div>
                     <div class="mt-3">
                         <label class="tx-11 fw-bolder mb-0 text-uppercase">Katıldığı Tarih</label>
-                        <p class="text-muted">{{ Auth::user()->email_verified_at }}</p>
+                        <p class="text-muted">{{ date('d-m-Y',strtotime($getRecord->created_at)) }}</p>
                     </div>
                     <div class="mt-3">
                         <label class="tx-11 fw-bolder mb-0 text-uppercase">Adres</label>
-                        <p class="text-muted">{{ Auth::user()->address }}</p>
+                        <p class="text-muted">{{ $getRecord->address }}</p>
                     </div>
                     <div class="mt-3">
                         <label class="tx-11 fw-bolder mb-0 text-uppercase">Email</label>
-                        <p class="text-muted">{{ Auth::user()->email }}</p>
+                        <p class="text-muted">{{ $getRecord->email }}</p>
                     </div>
                     <div class="mt-3">
                         <label class="tx-11 fw-bolder mb-0 text-uppercase">Telefon</label>
-                        <p class="text-muted">{{ Auth::user()->phone }}</p>
+                        <p class="text-muted">{{ $getRecord->phone }}</p>
                     </div>
                     <div class="mt-3">
                         <label class="tx-11 fw-bolder mb-0 text-uppercase">Web Site</label>
 
-                        <p class="text-muted">{{ Auth::user()->phone }}</p>
+                        <p class="text-muted">
+                            <a href="{{ $getRecord->website }}">
+                                {{ $getRecord->website }}
+                            </a>
+
+                        </p>
                     </div>
                     <div class="mt-3 d-flex social-links">
-                        <a href="www.google.com" class="btn btn-icon border btn-xs me-2">
+                        <a href="{{ $getRecord->github_info }}" class="btn btn-icon border btn-xs me-2">
                             <i data-feather="github"></i>
                         </a>
-                        <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
+                        <a href="{{ $getRecord->x_info }}" class="btn btn-icon border btn-xs me-2">
                             <i data-feather="twitter"></i>
                         </a>
-                        <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
+                        <a href="{{ $getRecord->linkedin_info }}" class="btn btn-icon border btn-xs me-2">
                             <i data-feather="linkedin"></i>
                         </a>
                     </div>
@@ -54,113 +63,120 @@
             </div>
         </div>
         <!-- left wrapper end -->
+
+        
         <!-- middle wrapper start -->
         <div class="col-md-8 col-xl-9 middle-wrapper">
+            @include('_message')
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">Profile Güncelleme</h6>
-                        <form class="forms-sample" method="post" action="">
+                        <form class="forms-sample" method="post" action="{{ url('admin/profile/update') }}"
+                            enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="row mb-3">
                                 <label for="name" class="col-sm-3 col-form-label">İsim &
                                     Soyisim</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="İsim Soyisim" value="{{ Auth::user()->name }}">
+                                        placeholder="İsim Soyisim" value="{{ $getRecord->name }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="username" class="col-sm-3 col-form-label">Kullanıcı Adı</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="username" name="username"
-                                        placeholder="Kullanıcı Adı" value="{{ Auth::user()->username }}">
+                                        placeholder="Kullanıcı Adı" value="{{ $getRecord->username }}">
+                                    @error('username')
+                                    <span style="color: red">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                                        value="{{ Auth::user()->email }}">
+                                        value="{{ $getRecord->email }}">
+                                    @error('email')
+                                    <span style="color: red">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="phone" class="col-sm-3 col-form-label">Telefon Numarası</label>
                                 <div class="col-sm-9">
                                     <input type="number" class="form-control" id="phone" name="phone"
-                                        placeholder="Telefon Numarası" value="{{ Auth::user()->phone }}">
+                                        placeholder="Telefon Numarası" value="{{ $getRecord->phone }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="address" class="col-sm-3 col-form-label">Adres Bilgisi</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="address" name="address"
-                                        placeholder="Adres Bilgisi" value="{{ Auth::user()->address }}">
+                                        placeholder="Adres Bilgisi" value="{{ $getRecord->address }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="role" class="col-sm-3 col-form-label">Yetki
-                                    Bilgisi</label>
+                                <label for="password" class="col-sm-3 col-form-label">Parola</label>
                                 <div class="col-sm-9">
-                                    <select class="form-select" id="role" name="role">
-                                        <option selected disabled>Yetki Seçiniz</option>
-                                        <option>Admin</option>
-                                        <option>Agent</option>
-                                        <option>Kullanıcı</option>
-                                    </select>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="(Boş Bırakırsanız Değişmeyecektir.)">
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label for="status" class="col-sm-3 col-form-label">Durum
-                                    Bilgisi</label>
-                                <div class="col-sm-9">
-                                    <select class="form-select" id="status" name="status">
-                                        <option selected disabled>Durum Seçiniz</option>
-                                        <option>Aktif</option>
-                                        <option>Pasif</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <hr>
                             <div class="row mb-3">
                                 <label for="about" class="col-sm-3 col-form-label">Hakkımda</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="about" id="about" rows="3"></textarea>
+                                    <textarea class="form-control" name="about" id="about"
+                                        rows="3">{{ $getRecord->about }}</textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="github_info" class="col-sm-3 col-form-label">Github</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="github_info" class="form-control" id="github_info">
+                                    <input type="text" name="github_info" class="form-control" id="github_info"
+                                        value="{{ $getRecord->github_info }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="x_info" class="col-sm-3 col-form-label">Twitter |
                                     X</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="x_info" class="form-control" id="x_info" name="x_info">
+                                    <input type="text" name="x_info" class="form-control" id="x_info"
+                                        value="{{ $getRecord->x_info }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="linkedin_info" class="col-sm-3 col-form-label">LinkedIn</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="linkedin_info" class="form-control" id="linkedin_info" name="linkedin_info">
+                                    <input type="text" name="linkedin_info" class="form-control" id="linkedin_info"
+                                        value="{{ $getRecord->linkedin_info }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-3 col-form-label" for="photo" >Görsel</label>
+                                <label for="website" class="col-sm-3 col-form-label">Web Site</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="website" class="form-control" id="website"
+                                        value="{{ $getRecord->website }}">
+                                </div>
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-3 col-form-label" for="photo">Görsel</label>
                                 <div class="col-sm-9">
                                     <input name="photo" class="form-control" type="file" id="photo">
                                 </div>
                             </div>
-                            <hr>
+                            @if (!empty($getRecord->photo))
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label"></label>
                                 <div class="col-sm-9">
                                     <img class="card-img-top" style="width:128px;"
-                                        src="{{ !empty($adminData->profile_image) ? url('upload/admin_images/' . $adminData->profile_image) : url('upload/image.png') }}">
+                                        src="{{ !empty($getRecord->photo) ? url('upload/' . $getRecord->photo) : url('upload/no-profile.png') }}">
                                 </div>
                             </div>
-                            <hr>
+                            @endif
+
+
                             <div class="row mb-3">
                                 <label class="col-sm-3 col-form-label"></label>
                                 <div class="col-sm-9">
