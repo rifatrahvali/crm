@@ -22,16 +22,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-// Middleware ile rol kontrolü yap
-Route::middleware(['auth','role:admin'])->group(function () {
-    Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
+Route::get('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
+// Middleware Kullanarak ADMIN rol kontrolü yap
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+
+    Route::get('admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+
+
+});
+// Middleware Kullanarak AGENT rol kontrolü yap
+Route::middleware(['auth', 'role:agent'])->group(function () {
+    Route::get('agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 });
 
-Route::middleware(['auth','role:agent'])->group(function () {
-    Route::get('/agent/dashboard',[AgentController::class,'AgentDashboard'])->name('agent.dashboard');
-});
 
 
 
