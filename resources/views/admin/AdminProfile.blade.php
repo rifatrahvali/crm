@@ -2,355 +2,182 @@
 
 @section('admin')
 
-<div class="row">
-    <div class="col-12 grid-margin">
-        <div class="card">
-            <div class="position-relative">
-                <figure class="overflow-hidden mb-0 d-flex justify-content-center">
-                    <img src="https://via.placeholder.com/1560x370" class="rounded-top" alt="profile cover">
-                </figure>
-                <div
-                    class="d-flex justify-content-between align-items-center position-absolute top-90 w-100 px-2 px-md-4 mt-n4">
-                    <div>
-                        <img class="wd-70 rounded-circle" src="https://via.placeholder.com/100x100" alt="profile">
-                        <span class="h4 ms-3 text-dark">{{ Auth::user()->name }}</span>
+<div class="page-content">
+    <div class="row profile-body">
+        <!-- left wrapper start -->
+        <div class="col-md-4 col-xl-3 left-wrapper">
+            <div class="card">
+                <img class="card-img-top"
+                    src="{{ !empty($adminData->profile_image) ? url('upload/admin_images/' . $adminData->profile_image) : url('upload/image.png') }}">
+                <div class="card-body">
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">İsim Soyisim</label>
+                        <p class="text-muted">{{ Auth::user()->name }}</p>
                     </div>
-                    <div class="d-none d-md-block">
-                        <button class="btn btn-primary btn-icon-text">
-                            <i data-feather="edit" class="btn-icon-prepend"></i> Edit profile
-                        </button>
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">Yetki</label>
+                        <p class="text-muted">{{ Auth::user()->role }}</p>
                     </div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center p-3 rounded-bottom">
-                <ul class="d-flex align-items-center m-0 p-0">
-                    <li class="d-flex align-items-center active">
-                        <i class="me-1 icon-md text-primary" data-feather="columns"></i>
-                        <a class="pt-1px d-none d-md-block text-primary" href="#">Timeline</a>
-                    </li>
-                    <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                        <i class="me-1 icon-md" data-feather="user"></i>
-                        <a class="pt-1px d-none d-md-block text-body" href="#">About</a>
-                    </li>
-                    <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                        <i class="me-1 icon-md" data-feather="users"></i>
-                        <a class="pt-1px d-none d-md-block text-body" href="#">Friends <span
-                                class="text-muted tx-12">3,765</span></a>
-                    </li>
-                    <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                        <i class="me-1 icon-md" data-feather="image"></i>
-                        <a class="pt-1px d-none d-md-block text-body" href="#">Photos</a>
-                    </li>
-                    <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                        <i class="me-1 icon-md" data-feather="video"></i>
-                        <a class="pt-1px d-none d-md-block text-body" href="#">Videos</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row profile-body">
-    <!-- left wrapper start -->
-    <div class="d-none d-md-block col-md-4 col-xl-3 left-wrapper">
-        <div class="card rounded">
-            <div class="card-body">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <h6 class="card-title mb-0">Yetki</h6>
-                    <div class="dropdown">
-                        <a type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">Katıldığı Tarih</label>
+                        <p class="text-muted">{{ Auth::user()->email_verified_at }}</p>
+                    </div>
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">Adres</label>
+                        <p class="text-muted">{{ Auth::user()->address }}</p>
+                    </div>
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">Email</label>
+                        <p class="text-muted">{{ Auth::user()->email }}</p>
+                    </div>
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">Telefon</label>
+                        <p class="text-muted">{{ Auth::user()->phone }}</p>
+                    </div>
+                    <div class="mt-3">
+                        <label class="tx-11 fw-bolder mb-0 text-uppercase">Web Site</label>
+
+                        <p class="text-muted">{{ Auth::user()->phone }}</p>
+                    </div>
+                    <div class="mt-3 d-flex social-links">
+                        <a href="www.google.com" class="btn btn-icon border btn-xs me-2">
+                            <i data-feather="github"></i>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                    data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                            <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                    data-feather="git-branch" class="icon-sm me-2"></i> <span class="">Update</span></a>
-                            <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye"
-                                    class="icon-sm me-2"></i> <span class="">View all</span></a>
-                        </div>
-                    </div>
-                </div>
-                <p>
-                    {{ Auth::user()->role }}
-                </p>
-                <div class="mt-3">
-                    <label class="tx-11 fw-bolder mb-0 text-uppercase">Katıldığı Tarih</label>
-                    <p class="text-muted">{{ Auth::user()->email_verified_at }}</p>
-                </div>
-                <div class="mt-3">
-                    <label class="tx-11 fw-bolder mb-0 text-uppercase">Adres</label>
-                    <p class="text-muted">{{ Auth::user()->address }}</p>
-                </div>
-                <div class="mt-3">
-                    <label class="tx-11 fw-bolder mb-0 text-uppercase">Email</label>
-                    <p class="text-muted">{{ Auth::user()->email }}</p>
-                </div>
-                <div class="mt-3">
-                    <label class="tx-11 fw-bolder mb-0 text-uppercase">Telefon</label>
-                    <p class="text-muted">{{ Auth::user()->phone }}</p>
-                </div>
-                <div class="mt-3 d-flex social-links">
-                    <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                        <i data-feather="github"></i>
-                    </a>
-                    <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                        <i data-feather="twitter"></i>
-                    </a>
-                    <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
-                        <i data-feather="instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- left wrapper end -->
-    <!-- middle wrapper start -->
-    <div class="col-md-8 col-xl-6 middle-wrapper">
-        <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="card rounded">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">1 min ago</p>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <a type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="icon-lg pb-3px" data-feather="more-horizontal"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="meh" class="icon-sm me-2"></i> <span
-                                            class="">Unfollow</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="corner-right-up" class="icon-sm me-2"></i> <span class="">Go
-                                            to post</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="share-2" class="icon-sm me-2"></i> <span
-                                            class="">Share</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="copy" class="icon-sm me-2"></i> <span class="">Copy
-                                            link</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus minima
-                            delectus nemo unde quae recusandae assumenda.</p>
-                        <img class="img-fluid" src="https://via.placeholder.com/689x430" alt="">
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex post-actions">
-                            <a href="javascript:;" class="d-flex align-items-center text-muted me-4">
-                                <i class="icon-md" data-feather="heart"></i>
-                                <p class="d-none d-md-block ms-2">Like</p>
-                            </a>
-                            <a href="javascript:;" class="d-flex align-items-center text-muted me-4">
-                                <i class="icon-md" data-feather="message-square"></i>
-                                <p class="d-none d-md-block ms-2">Comment</p>
-                            </a>
-                            <a href="javascript:;" class="d-flex align-items-center text-muted">
-                                <i class="icon-md" data-feather="share"></i>
-                                <p class="d-none d-md-block ms-2">Share</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card rounded">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">5 min ago</p>
-                                </div>
-                            </div>
-                            <div class="dropdown">
-                                <a type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="icon-lg pb-3px" data-feather="more-horizontal"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="meh" class="icon-sm me-2"></i> <span
-                                            class="">Unfollow</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="corner-right-up" class="icon-sm me-2"></i> <span class="">Go
-                                            to post</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="share-2" class="icon-sm me-2"></i> <span
-                                            class="">Share</span></a>
-                                    <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                            data-feather="copy" class="icon-sm me-2"></i> <span class="">Copy
-                                            link</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <img class="img-fluid" src="https://via.placeholder.com/689x430" alt="">
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex post-actions">
-                            <a href="javascript:;" class="d-flex align-items-center text-muted me-4">
-                                <i class="icon-md" data-feather="heart"></i>
-                                <p class="d-none d-md-block ms-2">Like</p>
-                            </a>
-                            <a href="javascript:;" class="d-flex align-items-center text-muted me-4">
-                                <i class="icon-md" data-feather="message-square"></i>
-                                <p class="d-none d-md-block ms-2">Comment</p>
-                            </a>
-                            <a href="javascript:;" class="d-flex align-items-center text-muted">
-                                <i class="icon-md" data-feather="share"></i>
-                                <p class="d-none d-md-block ms-2">Share</p>
-                            </a>
-                        </div>
+                        <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
+                            <i data-feather="linkedin"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- middle wrapper end -->
-    <!-- right wrapper start -->
-    <div class="d-none d-xl-block col-xl-3">
-        <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="card rounded">
+        <!-- left wrapper end -->
+        <!-- middle wrapper start -->
+        <div class="col-md-8 col-xl-9 middle-wrapper">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title">latest photos</h6>
-                        <div class="row ms-0 me-0">
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-2">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-2">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-2">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-2">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-2">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-2">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-0">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-0">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                            <a href="javascript:;" class="col-md-4 ps-1 pe-1">
-                                <figure class="mb-0">
-                                    <img class="img-fluid rounded" src="https://via.placeholder.com/96x96" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 grid-margin">
-                <div class="card rounded">
-                    <div class="card-body">
-                        <h6 class="card-title">suggestions for you</h6>
-                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                        <h6 class="card-title">Profile Güncelleme</h6>
+                        <form class="forms-sample" method="post" action="">
+                            <div class="row mb-3">
+                                <label for="name" class="col-sm-3 col-form-label">İsim &
+                                    Soyisim</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="İsim Soyisim" value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
-                            <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                        </div>
-                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                            <div class="row mb-3">
+                                <label for="username" class="col-sm-3 col-form-label">Kullanıcı Adı</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        placeholder="Kullanıcı Adı" value="{{ Auth::user()->username }}">
                                 </div>
                             </div>
-                            <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                        </div>
-                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                            <div class="row mb-3">
+                                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                        value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
-                            <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                        </div>
-                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                            <div class="row mb-3">
+                                <label for="phone" class="col-sm-3 col-form-label">Telefon Numarası</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="phone" name="phone"
+                                        placeholder="Telefon Numarası" value="{{ Auth::user()->phone }}">
                                 </div>
                             </div>
-                            <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                        </div>
-                        <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                            <div class="d-flex align-items-center hover-pointer">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                            <div class="row mb-3">
+                                <label for="address" class="col-sm-3 col-form-label">Adres Bilgisi</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="address" name="address"
+                                        placeholder="Adres Bilgisi" value="{{ Auth::user()->address }}">
                                 </div>
                             </div>
-                            <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-center hover-pointer">
-                                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">
-                                <div class="ms-2">
-                                    <p>Mike Popescu</p>
-                                    <p class="tx-11 text-muted">12 Mutual Friends</p>
+                            <div class="row mb-3">
+                                <label for="role" class="col-sm-3 col-form-label">Yetki
+                                    Bilgisi</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" id="role" name="role">
+                                        <option selected disabled>Yetki Seçiniz</option>
+                                        <option>Admin</option>
+                                        <option>Agent</option>
+                                        <option>Kullanıcı</option>
+                                    </select>
                                 </div>
                             </div>
-                            <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                        </div>
+                            <div class="row mb-3">
+                                <label for="status" class="col-sm-3 col-form-label">Durum
+                                    Bilgisi</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" id="status" name="status">
+                                        <option selected disabled>Durum Seçiniz</option>
+                                        <option>Aktif</option>
+                                        <option>Pasif</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <label for="about" class="col-sm-3 col-form-label">Hakkımda</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="about" id="about" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="github_info" class="col-sm-3 col-form-label">Github</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="github_info" class="form-control" id="github_info">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="x_info" class="col-sm-3 col-form-label">Twitter |
+                                    X</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="x_info" class="form-control" id="x_info" name="x_info">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="linkedin_info" class="col-sm-3 col-form-label">LinkedIn</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="linkedin_info" class="form-control" id="linkedin_info" name="linkedin_info">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-3 col-form-label" for="photo" >Görsel</label>
+                                <div class="col-sm-9">
+                                    <input name="photo" class="form-control" type="file" id="photo">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <label class="col-sm-3 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <img class="card-img-top" style="width:128px;"
+                                        src="{{ !empty($adminData->profile_image) ? url('upload/admin_images/' . $adminData->profile_image) : url('upload/image.png') }}">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <label class="col-sm-3 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                    <button class="btn btn-secondary">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
 
                     </div>
                 </div>
             </div>
+
         </div>
+        <!-- middle wrapper end -->
+        <!-- right wrapper start -->
     </div>
-    <!-- right wrapper end -->
 </div>
-
 @endsection
