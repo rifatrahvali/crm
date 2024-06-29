@@ -52,10 +52,10 @@
             <!-- ÜST - NAVBAR -->
             @include('admin.body.Header')
             
-
+            <div class="page-content">
             <!-- ORTA - ICERIK BOLUMU - DEGISKEN -->
             @yield('admin')
-
+            </div>
             <!-- ALT - FOOTER -->
             @include('admin.body.Footer')
             

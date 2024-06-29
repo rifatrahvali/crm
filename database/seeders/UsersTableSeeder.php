@@ -16,6 +16,8 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
 
+     
+
             // bunları kendimiz ekledik.
             // Admin Demo Account
             [

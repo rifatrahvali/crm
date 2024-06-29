@@ -70,4 +70,11 @@ class AdminController extends Controller
         // return redirect('admin/profile')->with('success', 'Profil bilgileri güncellendi.');
         return redirect()->back()->with('success', 'Profil bilgileri güncellendi.');
     }
+
+    public function AdminUsers(Request $request) {
+        // getRecord ' kodunu user.php modeline kendimiz yazdık.
+        // kod fazlalığı olmasın
+        $data['getRecord'] = User::getRecord();
+        return view('admin.users.list',$data);
+    }
 }

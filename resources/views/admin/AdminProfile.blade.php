@@ -2,7 +2,6 @@
 
 @section('admin')
 
-<div class="page-content">
     <div class="row profile-body">
         <!-- left wrapper start -->
         <div class="col-md-4 col-xl-3 left-wrapper">
@@ -195,5 +194,5 @@
         <!-- middle wrapper end -->
         <!-- right wrapper start -->
     </div>
-</div>
+
 @endsection
