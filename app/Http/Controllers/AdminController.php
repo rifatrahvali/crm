@@ -35,12 +35,12 @@ class AdminController extends Controller
     }
     public function AdminProfileUpdate(Request $request)
     {
-        
+
         $user = $request->validate([
             'email' => 'required|unique:users,email,' . Auth::user()->id,
             'username' => 'required|unique:users,username,' . Auth::user()->id,
         ]);
-    
+
 
         $user = User::find(Auth::user()->id);
 
@@ -57,7 +57,7 @@ class AdminController extends Controller
             $filename = $randomPhotoName . '.' . $file->getClientOriginalExtension();
             $file->move('upload/', $filename);
             $user->photo = $filename;
-            
+
         }
         $user->phone = trim($request->phone);
         $user->address = trim($request->address);
@@ -71,10 +71,17 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Profil bilgileri güncellendi.');
     }
 
-    public function AdminUsers(Request $request) {
+    public function AdminUsers(Request $request)
+    {
         // getRecord ' kodunu user.php modeline kendimiz yazdık.
         // kod fazlalığı olmasın
         $data['getRecord'] = User::getRecord();
-        return view('admin.users.list',$data);
+        return view('admin.users.list', $data);
+    }
+    public function AdminUserView($id)
+    {
+
+        $data['getRecord'] = User::find($id);
+        return view('admin.users.view', $data);
     }
 }

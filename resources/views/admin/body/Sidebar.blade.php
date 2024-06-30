@@ -13,6 +13,12 @@
         <ul class="nav">
             <li class="nav-item nav-category">Temel</li>
             <li class="nav-item">
+                <a href="{{ route('admin.profile') }}" class="nav-link">
+                    <i class="link-icon" data-feather="user"></i>
+                    <span class="link-title">Profil</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Kontrol Paneli</span>
@@ -21,7 +27,7 @@
             <li class="nav-item nav-category">Yetkiler</li>
             <li class="nav-item">
                 <a href="{{ url('admin/users') }}" class="nav-link">
-                    <i class="link-icon" data-feather="user"></i>
+                    <i class="link-icon" data-feather="users"></i>
                     <span class="link-title">Kullanıcı Listesi</span>
                 </a>
             </li>

@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -23,6 +25,11 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->enum('role',['admin','agent','user'])->default('user');
             $table->enum('status',['active','inactive'])->default('active');
+            $table->string('about')->nullable();
+            $table->string('github_info')->nullable();
+            $table->string('x_info')->nullable();
+            $table->string('linkedin_info')->nullable();
+            $table->string('website')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

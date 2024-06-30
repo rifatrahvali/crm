@@ -16,7 +16,6 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
 
-     
 
             // bunları kendimiz ekledik.
             // Admin Demo Account
@@ -25,8 +24,15 @@ class UsersTableSeeder extends Seeder
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('123456789'),
+                'phone' => '4443434',
+                'address' => 'İstanbul / Beşiktaş',
                 'role' => 'admin',
                 'status' => 'active',
+                'about' => 'Yaş 30, Full Stack Developer',
+                'github_info' => 'https://github.com/rifatrahvali/',
+                'x_info' => 'https://x.com/rifatrahvali/',
+                'linkedin_info' => 'https://www.linkedin.com/in/rifatrahvali/',
+                'website' => 'https://rifatrahvali.github.io',
             ],
             // Agent Demo Account
             [
@@ -36,6 +42,13 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'role' => 'agent',
                 'status' => 'active',
+                'phone' => '4441122',
+                'address' => 'İstanbul / Beşiktaş',
+                'about' => 'Yaş 30, Full Stack Developer',
+                'github_info' => 'https://github.com/rifatrahvali/',
+                'x_info' => 'https://x.com/rifatrahvali/',
+                'linkedin_info' => 'https://www.linkedin.com/in/rifatrahvali/',
+                'website' => 'https://rifatrahvali.github.io',
             ],
             // User Demo Account
             [
@@ -45,6 +58,13 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'role' => 'user',
                 'status' => 'active',
+                'phone' => '4443355',
+                'address' => 'İstanbul / Beşiktaş',
+                'about' => 'Yaş 30, Full Stack Developer',
+                'github_info' => 'https://github.com/rifatrahvali/',
+                'x_info' => 'https://x.com/rifatrahvali/',
+                'linkedin_info' => 'https://www.linkedin.com/in/rifatrahvali/',
+                'website' => 'https://rifatrahvali.github.io',
             ],
 
         ]);

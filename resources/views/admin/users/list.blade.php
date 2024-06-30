@@ -71,8 +71,8 @@
                                 </td>
                                 <td>{{ date('d-m-Y',strtotime($value->created_at)) }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">Güncelle</button>
-                                    <button type="button" class="btn btn-danger">Sil</button>
+                                    <a href="{{ url('admin/users/view/'.$value->id) }}"
+                                        ><span class="btn btn-warning">Görüntüle</span></a>
                                 </td>
                             </tr>
                             @endforeach
