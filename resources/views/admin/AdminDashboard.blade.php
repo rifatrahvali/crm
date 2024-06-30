@@ -36,7 +36,7 @@
     {{-- TOAST --}}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
     <style>
-       
+
     </style>
 </head>
 
@@ -51,14 +51,14 @@
 
             <!-- ÜST - NAVBAR -->
             @include('admin.body.Header')
-            
+
             <div class="page-content">
-            <!-- ORTA - ICERIK BOLUMU - DEGISKEN -->
-            @yield('admin')
+                <!-- ORTA - ICERIK BOLUMU - DEGISKEN -->
+                @yield('admin')
             </div>
             <!-- ALT - FOOTER -->
             @include('admin.body.Footer')
-            
+
 
         </div>
     </div>
@@ -95,6 +95,13 @@
     </script>
     @endif
 
+
+    {{-- BAR CHART --}}
+
+    @yield('script')
+    <script type="text/javascript">
+
+    </script>
 </body>
 
 </html>

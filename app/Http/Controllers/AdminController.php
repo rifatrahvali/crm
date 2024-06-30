@@ -13,7 +13,19 @@ class AdminController extends Controller
 
     public function AdminDashboard(Request $request)
     {
-        return view('admin.index');
+        // BAR CHART KODU BAŞLANGIÇ
+        // User modelinden verileri seçiyoruz ve her ay için kullanıcı sayısını ve ay bilgisini alıyoruz
+        $user = User::selectRaw('count(id) as count, DATE_FORMAT(created_at,"%Y-%m") as month')
+            ->groupBy('month') // Verileri ay bazında gruplandırıyoruz
+            ->orderBy('month', 'asc') // Verileri ay sırasına göre artan şekilde sıralıyoruz
+            ->get(); // Sorguyu çalıştırıyoruz ve sonuçları alıyoruz
+        // Aylara göre verileri alıp $data['months'] değişkenine atıyoruz
+        $data['months'] = $user->pluck('month');
+        // Kullanıcı sayılarını alıp $data['counts'] değişkenine atıyoruz
+        $data['counts'] = $user->pluck('count');
+        // BAR CHART KODU BİTİŞ        
+
+        return view('admin.index', $data);
     }
     public function AdminLogout(Request $request)
     {

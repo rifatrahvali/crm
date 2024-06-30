@@ -39,7 +39,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // KULLANICILARI LISTELEME ISLEMI
     Route::get('admin/users', [AdminController::class, 'AdminUsers']);
 
-
     Route::get('admin/users/view/{id}', [AdminController::class, 'AdminUserView']);
 
 });
@@ -47,7 +46,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::get('agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 });
-
 
 
 

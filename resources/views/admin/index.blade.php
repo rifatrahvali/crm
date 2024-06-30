@@ -2,7 +2,6 @@
 
 @section('admin')
 <div class="page-content">
-
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
             <h4 class="mb-3 mb-md-0">Panele Hoşgeldiniz.</h4>
@@ -168,92 +167,40 @@
                 </div>
             </div>
         </div>
-    </div> <!-- row -->
+    </div>
 
-
+    {{-- BAR CHART --}}
     <div class="row">
         <div class="col-lg-12 col-xl-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-baseline mb-2">
-                        <h6 class="card-title mb-0">Monthly sales</h6>
-                        <div class="dropdown mb-2">
-                            <a type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+                        <h6 class="card-title mb-0">Aylık Kullanıcılar</h6>
+                        <div class="d-flex">
+                            <a class="btn btn-sm btn-outline-secondary btn-icon me-1" href="javascript:;" title="View">
+                                <i data-feather="eye" class="icon-sm"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="download" class="icon-sm me-2"></i> <span
-                                        class="">Download</span></a>
-                            </div>
+                            <a class="btn btn-sm btn-outline-secondary btn-icon me-1" href="javascript:;" title="Edit">
+                                <i data-feather="edit-2" class="icon-sm"></i>
+                            </a>
+                            <a class="btn btn-sm btn-outline-secondary btn-icon me-1" href="javascript:;"
+                                title="Delete">
+                                <i data-feather="trash" class="icon-sm"></i>
+                            </a>
+                            <a class="btn btn-sm btn-outline-secondary btn-icon me-1" href="javascript:;" title="Print">
+                                <i data-feather="printer" class="icon-sm"></i>
+                            </a>
+                            <a class="btn btn-sm btn-outline-secondary btn-icon" href="javascript:;" title="Download">
+                                <i data-feather="download" class="icon-sm"></i>
+                            </a>
                         </div>
                     </div>
-                    <p class="text-muted">Sales are activities related to selling or the number of goods or
-                        services sold in a given time period.</p>
-                    <div id="monthlySalesChart"></div>
+                    <p class="text-muted">Sisteme kayıt olan kullanıcıların aylık tablosudur.</p>
+                    <div id="monthlyUserChart"></div>
                 </div>
             </div>
         </div>
-        {{-- <div class="col-lg-5 col-xl-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-baseline">
-                        <h6 class="card-title mb-0">Cloud storage</h6>
-                        <div class="dropdown mb-2">
-                            <a type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
-                                <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                        data-feather="download" class="icon-sm me-2"></i> <span
-                                        class="">Download</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="storageChart"></div>
-                    <div class="row mb-3">
-                        <div class="col-6 d-flex justify-content-end">
-                            <div>
-                                <label
-                                    class="d-flex align-items-center justify-content-end tx-10 text-uppercase fw-bolder">Total
-                                    storage <span class="p-1 ms-1 rounded-circle bg-secondary"></span></label>
-                                <h5 class="fw-bolder mb-0 text-end">8TB</h5>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div>
-                                <label class="d-flex align-items-center tx-10 text-uppercase fw-bolder"><span
-                                        class="p-1 me-1 rounded-circle bg-primary"></span> Used
-                                    storage</label>
-                                <h5 class="fw-bolder mb-0">~5TB</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-grid">
-                        <button class="btn btn-primary">Upgrade storage</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-    </div> <!-- row -->
+    </div>
 
     <div class="row">
         <div class="col-lg-5 col-xl-4 grid-margin grid-margin-xl-0 stretch-card">
@@ -448,7 +395,136 @@
                 </div>
             </div>
         </div>
-    </div> <!-- row -->
+    </div>
 
 </div>
+@endsection
+
+@section('script')
+
+
+<script type="text/javascript">
+    $(function () {
+  'use strict'
+
+
+
+  var colors = {
+    primary: "#6571ff",
+    secondary: "#7987a1",
+    success: "#05a34a",
+    info: "#66d1d1",
+    warning: "#fbbc06",
+    danger: "#ff3366",
+    light: "#e9ecef",
+    dark: "#060c17",
+    muted: "#7987a1",
+    gridBorder: "rgba(77, 138, 240, .15)",
+    bodyColor: "#000",
+    cardBg: "#fff"
+  }
+
+  var fontFamily = "'Roboto', Helvetica, sans-serif"
+    if ($('#monthlyUserChart').length) {
+         // Grafik türünü bar (çubuk) olarak ayarlıyoruz
+    var options = {
+      chart: {
+        type: 'bar',
+        height: '600',
+        parentHeightOffset: 0,
+        foreColor: colors.bodyColor,
+        background: colors.cardBg,
+        toolbar: {
+          show: false
+        },
+      },
+      theme: {
+        mode: 'light'
+      },
+      tooltip: {
+        theme: 'light'
+      },
+      colors: [colors.primary],
+      fill: {
+        opacity: .9
+      },
+      grid: {
+        padding: {
+          bottom: -4
+        },
+        borderColor: colors.gridBorder,
+        xaxis: {
+          lines: {
+            show: true
+          }
+        }
+      },
+      // Grafik serilerini tanımlıyoruz
+      series: [{
+        name: 'Kullanıcılar',
+        // kullanıcı Sayısı - AdminDashboard() fonksiyonundan geliyor
+        // Kullanıcı sayılarını PHP'den gelen verilerle dolduruyoruz
+        data: @json($counts)
+      }],
+      // X ekseni ayarlarını yapıyoruz
+      xaxis: {
+        // X ekseni türünü datetime (tarih-zaman) olarak ayarlıyoruz
+        type: 'datetime',
+        // Ay sayısı - AdminDashboard() fonksiyonundan geliyor
+        // X eksenindeki kategorileri (ayları) PHP'den gelen verilerle dolduruyoruz
+        categories: @json($months),
+        axisBorder: {
+          color: colors.gridBorder,
+        },
+        axisTicks: {
+          color: colors.gridBorder,
+        },
+      },
+      yaxis: {
+        title: {
+          text: 'Kullanıcı Sayısı',
+          style: {
+            size: 9,
+            color: colors.muted
+          }
+        },
+      },
+      legend: {
+        show: true,
+        position: "top",
+        horizontalAlign: 'center',
+        fontFamily: fontFamily,
+        itemMargin: {
+          horizontal: 8,
+          vertical: 0
+        },
+      },
+      stroke: {
+        width: 0
+      },
+      dataLabels: {
+        enabled: true,
+        style: {
+          fontSize: '10px',
+          fontFamily: fontFamily,
+        },
+        offsetY: -27
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: "50%",
+          borderRadius: 4,
+          dataLabels: {
+            position: 'top',
+            orientation: 'vertical',
+          }
+        },
+      },
+    }
+
+    var apexBarChart = new ApexCharts(document.querySelector("#monthlyUserChart"), options);
+    apexBarChart.render();
+  }
+    });
+</script>
 @endsection
