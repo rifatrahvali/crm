@@ -8,45 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-3 border-end-lg">
-                        <div class="aside-content">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <button class="navbar-toggle btn btn-icon border d-block d-lg-none"
-                                    data-bs-target=".email-aside-nav" data-bs-toggle="collapse" type="button">
-                                    <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-chevron-down">
-                                            <polyline points="6 9 12 15 18 9"></polyline>
-                                        </svg></span>
-                                </button>
-                                <div class="order-first">
-                                    <h4>Mail Service</h4>
-                                    <p class="text-muted">{{ Auth::user()->email }}</p>
-                                </div>
-                            </div>
-                            <div class="d-grid my-3">
-                                <a class="btn btn-primary" href="{{ url('admin/email/compose') }}">Yeni Mail</a>
-                            </div>
-                            <div class="email-aside-nav collapse">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <a class="nav-link d-flex align-items-center" href="../email/inbox.html">
-                                            <i data-feather="inbox" class="me-2"></i>Gelen Kutusu
-                                        </a>
-                                    </li>
-                                    <li class="nav-item mt-2">
-                                        <a class="nav-link d-flex align-items-center" href="{{ url('admin/email/sent') }}">
-                                            <i data-feather="send" class="me-2"></i>
-                                            Gönderilenler
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         @include('_message')
                         <div class="d-flex align-items-center p-3 border-bottom tx-16">
                             <i data-feather="edit" class="me-2"></i>

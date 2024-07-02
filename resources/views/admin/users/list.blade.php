@@ -9,6 +9,24 @@
     </ol>
 </nav>
 <div class="row">
+    <div class="col-lg-12 strech-card">
+        <div class="card">
+            <div class="card-header">
+                Kullanıcı Ara
+            </div>
+            <div class="card-body">
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
     <div class="col-lg-12 stretch-card">
         <div class="card">
             <div class="card-body">
@@ -71,8 +89,8 @@
                                 </td>
                                 <td>{{ date('d-m-Y',strtotime($value->created_at)) }}</td>
                                 <td>
-                                    <a href="{{ url('admin/users/view/'.$value->id) }}"
-                                        ><span class="btn btn-warning">Görüntüle</span></a>
+                                    <a href="{{ url('admin/users/view/'.$value->id) }}"><span
+                                            class="btn btn-warning">Görüntüle</span></a>
                                 </td>
                             </tr>
                             @endforeach

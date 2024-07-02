@@ -29,7 +29,6 @@ class EmailController extends Controller
         $getUserEmail = User::where('id', '=', $request->user_id)->first();
         Mail::to($getUserEmail->email)->cc($request->cc_email)->send(new ComposeEmailMail($save));
         // Email bitiş
-
         return redirect()->back()->with('success', 'Mesajınız gönderildi.');
     }
 
@@ -38,6 +37,7 @@ class EmailController extends Controller
         $data['getRecord'] = ComposeEmailModel::get();
         return view('admin.email.sent', $data);
     }
+
 
     public function EmailSentDelete(Request $request)
     {
@@ -52,5 +52,17 @@ class EmailController extends Controller
             }
         }
         return redirect()->back()->with('success', 'Gönderilen mail başarıyla veritabanından silidi.');
+    }
+
+    public function AdminEmailRead($id, Request $request)
+    {
+        $data['getRecord'] = ComposeEmailModel::find($id);
+        return view('admin.email.read', $data);
+    }
+    public function AdminEmailReadDelete($id, Request $request)
+    {
+        $deleteRecord = ComposeEmailModel::find($id);
+        $deleteRecord->delete();
+        return redirect('admin/email/sent')->with('success', 'Gönderilen mail başarıyla veritabanından silidi.');
     }
 }
