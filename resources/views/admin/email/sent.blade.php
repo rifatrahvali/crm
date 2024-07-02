@@ -46,6 +46,7 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
+                        @include('_message')
                         <div class="p-3 border-bottom">
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
@@ -81,9 +82,9 @@
                                     </div>
                                 </div>
                                 <div class="btn-group me-2">
-                                    <button class="btn btn-outline-primary" type="button">Archive</button>
-                                    <button class="btn btn-outline-primary" type="button">Span</button>
-                                    <button class="btn btn-outline-primary" type="button">Delete</button>
+                                    <button class="btn btn-outline-primary" type="button">Arşiv</button>
+                                    <a href="" id="getDeleteURL" class="btn btn-outline-primary"
+                                        onclick="return confirm('Silmek istediğinizden emin misiniz?');">Sil</a>
                                 </div>
                                 <div class="btn-group me-2 d-none d-xl-block">
                                     <button class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
@@ -116,7 +117,9 @@
                             <div class="email-list-item email-list-item--unread">
                                 <div class="email-list-actions">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input">
+                                        <!-- gönderilen maillerin idsini checkbox'a atandı -->
+                                        <input type="checkbox" class="form-check-inpu delete-all-option"
+                                            value="{{ $value->id }}">
                                     </div>
                                     <a class="favorite" href="javascript:;"><span><i data-feather="star"></i></span></a>
                                 </div>
@@ -139,4 +142,20 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $('.delete-all-option').change(function () {
+            var total = '';
+            $('.delete-all-option').each(function () {
+                if (this.checked) {
+                    var id = $(this).val();
+                    total += id+',';
+                }
+            });
+            var url = '{{ url('admin/email/sentDelete?id=') }}'+total;
+            $('#getDeleteURL').attr('href',url);
+        });
+</script>
 @endsection

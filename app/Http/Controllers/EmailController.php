@@ -33,8 +33,24 @@ class EmailController extends Controller
         return redirect()->back()->with('success', 'Mesajınız gönderildi.');
     }
 
-    public function EmailSent(Request $request){
+    public function EmailSent(Request $request)
+    {
         $data['getRecord'] = ComposeEmailModel::get();
-        return view('admin.email.sent',$data);
+        return view('admin.email.sent', $data);
+    }
+
+    public function EmailSentDelete(Request $request)
+    {
+
+        if (!empty($request->id)) {
+            $option = explode(',', $request->id);
+            foreach ($option as $id) {
+                if (!empty($id)) {
+                    $getRecord = ComposeEmailModel::find($id);
+                    $getRecord->delete();
+                }
+            }
+        }
+        return redirect()->back()->with('success', 'Gönderilen mail başarıyla veritabanından silidi.');
     }
 }

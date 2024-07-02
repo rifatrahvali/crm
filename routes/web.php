@@ -45,6 +45,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/email/compose_post',[EmailController::class, 'EmailComposerPost']);
     Route::get('admin/email/sent',[EmailController::class, 'EmailSent']);
 
+    Route::get('admin/email/sentDelete',[EmailController::class, 'EmailSentDelete']);
+
 });
 // MIDDLEWARE KULLANARAK AGENT YETKISINE SAHIP KULLANICILARIN KULLANABILECEKLERI ROTALAR
 Route::middleware(['auth', 'role:agent'])->group(function () {
