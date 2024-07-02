@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,8 +39,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('admin/profile/update', [AdminController::class, 'AdminProfileUpdate']);
     // KULLANICILARI LISTELEME ISLEMI
     Route::get('admin/users', [AdminController::class, 'AdminUsers']);
-
     Route::get('admin/users/view/{id}', [AdminController::class, 'AdminUserView']);
+
+    Route::get('admin/email/compose',[EmailController::class, 'EmailComposer']);
+    Route::post('admin/email/compose_post',[EmailController::class, 'EmailComposerPost']);
+    Route::get('admin/email/sent',[EmailController::class, 'EmailSent']);
 
 });
 // MIDDLEWARE KULLANARAK AGENT YETKISINE SAHIP KULLANICILARIN KULLANABILECEKLERI ROTALAR

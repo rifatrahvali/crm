@@ -27,6 +27,11 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
     <!-- endinject -->
 
+	{{-- <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('/assets/vendors/select2/select2.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/assets/vendors/easymde/easymde.min.css') }}">
+	<!-- End plugin css for this page --> --}}
+
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('/assets/css/demo1/style.css') }}">
     <!-- End layout styles -->
@@ -80,6 +85,11 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('/assets/js/dashboard-light.js') }}"></script>
     <!-- End custom js for this page -->
+
+    {{-- <script src="{{ asset('/assets/vendors/select2/select2.min.js') }}"></script>
+	<script src="{{ asset('/assets/vendors/easymde/easymde.min.js') }}"></script>
+
+    <script src="{{asset('/assets/js/email.js')}}"></script> --}}
 
     {{-- tostr --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

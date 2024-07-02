@@ -31,7 +31,7 @@
                     <span class="link-title">Kullanıcı Listesi</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">web apps</li>
+            <li class="nav-item nav-category">Mail Yönetimi</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false"
                     aria-controls="emails">
@@ -42,13 +42,13 @@
                 <div class="collapse" id="emails">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
+                            <a href="{{ url('admin/email/compose') }}" class="nav-link">Oluştur</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Read</a>
+                            <a href="pages/email/inbox.html" class="nav-link">Gelen Kutusu</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/compose.html" class="nav-link">Compose</a>
+                            <a href="{{ url('admin/email/sent') }}" class="nav-link">Gönderilenler</a>
                         </li>
                     </ul>
                 </div>
@@ -69,7 +69,7 @@
                 </a>
                 <div class="collapse" id="uiComponents">
                     <ul class="nav sub-menu">
-                        
+
                         <li class="nav-item">
                             <a href="pages/ui-components/progress.html" class="nav-link">Progress</a>
                         </li>
