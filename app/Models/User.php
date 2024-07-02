@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -49,11 +50,58 @@ class User extends Authenticatable
 
     // users tablosundan kayıtları alarak id’ye göre azalan sırada sıralar ve
     // her sayfada 5 kayıt olacak şekilde sayfalar.
-    static public function getRecord()
+    static public function getRecord(Request $request)
     {
-
-        
         $return = self::select('users.*')->orderBy('id', 'asc');
+
+        // ARAMA BAŞLANGIÇ
+
+        if (!empty($request->input('genel'))) {
+            $genel = $request->input('genel');
+            $return = $return->where(function ($query) use ($genel) {
+                if (is_numeric($genel)) {
+                    $query->where('users.id', '=', $genel);
+                } else {
+                    $query->where('users.name', 'like', '%' . $genel . '%')
+                        ->orWhere('users.username', 'like', '%' . $genel . '%')
+                        ->orWhere('users.email', 'like', '%' . $genel . '%')
+                        ->orWhere('users.phone', 'like', '%' . $genel . '%')
+                        ->orWhere('users.website', 'like', '%' . $genel . '%')
+                        ->orWhere('users.role', 'like', '%' . $genel . '%')
+                        ->orWhere('users.status', 'like', '%' . $genel . '%');
+                }
+            });
+        } elseif(empty($request->input('genel'))) {
+            // Gelişmiş ARAMA BİTİŞ
+            if (!empty($request->input('id'))) {
+                $return = $return->where('users.id', '=', $request->input('id'));
+            }
+
+            if (!empty($request->input('name'))) {
+                $return = $return->where('users.name', 'like', '%' . $request->input('name') . '%');
+            }
+            if (!empty($request->input('username'))) {
+                $return = $return->where('users.username', 'like', '%' . $request->input('username') . '%');
+            }
+            if (!empty($request->input('email'))) {
+                $return = $return->where('users.email', 'like', '%' . $request->input('email') . '%');
+            }
+            if (!empty($request->input('phone'))) {
+                $return = $return->where('users.phone', 'like', '%' . $request->input('phone') . '%');
+            }
+            if (!empty($request->input('website'))) {
+                $return = $return->where('users.website', 'like', '%' . $request->input('website') . '%');
+            }
+            if (!empty($request->input('role'))) {
+                $return = $return->where('users.role', 'like', '%' . $request->input('role') . '%');
+            }
+            if (!empty($request->input('status'))) {
+                $return = $return->where('users.status', 'like', '%' . $request->input('status') . '%');
+            }
+            // ARAMA BİTİŞ
+        }
+
+
         $return = $return->paginate(10);
         return $return;
     }

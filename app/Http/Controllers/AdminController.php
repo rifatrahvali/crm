@@ -87,7 +87,7 @@ class AdminController extends Controller
     {
         // getRecord ' kodunu user.php modeline kendimiz yazdık.
         // kod fazlalığı olmasın
-        $data['getRecord'] = User::getRecord();
+        $data['getRecord'] = User::getRecord($request);
         return view('admin.users.list', $data);
     }
     public function AdminUserView($id)
