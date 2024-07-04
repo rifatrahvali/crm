@@ -1,13 +1,45 @@
 @extends('admin.AdminDashboard')
 @section('admin')
 
+<div class="row">
+    <div class="col-12 col-xl-12 mb-2">
+        <div class="row d-flex flex-grow justify-content-center">
+            <!-- Her bir düğme ve badge içeren div -->
+            
+            <div class="col-auto custom-btn">
+                <button type="button" class="btn btn-secondary">
+                    Admin Kullanıcılar <span class="badge bg-light text-dark">{{ $TotalAdmin }}</span>
+                </button>
+            </div>
+            <div class="col-auto custom-btn">
+                <button type="button" class="btn btn-success">
+                    Danışman Kullanıcılar <span class="badge bg-light text-dark">{{ $TotalAgent }}</span>
+                </button>
+            </div>
+            <div class="col-auto custom-btn">
+                <button type="button" class="btn btn-info">
+                    Yetkisiz Kullanıcılar <span class="badge bg-light text-dark">{{ $TotalUser }}</span>
+                </button>
+            </div>
+            <div class="col-auto custom-btn">
+                <button type="button" class="btn btn-primary">
+                    Yetkisiz Aktif Kullanıcılar <span class="badge bg-light text-dark">{{ $TotalUserActive }}</span>
+                </button>
+            </div>
+            <div class="col-auto custom-btn">
+                <button type="button" class="btn btn-danger">
+                    Aktif Kullanıcılar <span class="badge bg-light text-dark">{{ $TotalActive }}</span>
+                </button>
+            </div>
+            <div class="col-auto custom-btn">
+                <button type="button" class="btn btn-warning">
+                    Pasif Kullanıcılar <span class="badge bg-light text-dark">{{ $TotalInactive }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
-<nav class="page-breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Kullanıcılar</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Kullanıcı Listesi</li>
-    </ol>
-</nav>
+</div>
 
 {{-- Gelişmiş Filtre --}}
 <div class="accordion col-lg-12" id="accordionExample">

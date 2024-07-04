@@ -29,6 +29,14 @@ class AdminController extends Controller
         $data['counts'] = $user->pluck('count');
         // BAR CHART KODU BİTİŞ        
 
+        $data['TotalEmail'] = User::where('email')->where('is_delete', '=', 0)->count();
+        $data['TotalAdmin'] = User::where('role', '=', 'admin')->where('is_delete', '=', 0)->count();
+        $data['TotalAgent'] = User::where('role', '=', 'agent')->where('is_delete', '=', 0)->count();
+        $data['TotalUser'] = User::where('role', '=', 'user')->where('is_delete', '=', 0)->count();
+        $data['TotalActive'] = User::where('status', '=', 'active')->where('is_delete', '=', 0)->count();
+        $data['TotalUserActive'] = User::where('status', '=', 'active')->where('role','=','user')->where('is_delete', '=', 0)->count();
+        $data['TotalInactive'] = User::where('status', '=', 'inactive')->where('is_delete', '=', 0)->count();
+
         return view('admin.index', $data);
     }
     public function AdminLogout(Request $request)
@@ -92,6 +100,15 @@ class AdminController extends Controller
         // getRecord ' kodunu user.php modeline kendimiz yazdık.
         // kod fazlalığı olmasın
         $data['getRecord'] = User::getRecord($request);
+
+        // COUNT 
+        $data['TotalEmail'] = User::where('email')->where('is_delete', '=', 0)->count();
+        $data['TotalAdmin'] = User::where('role', '=', 'admin')->where('is_delete', '=', 0)->count();
+        $data['TotalAgent'] = User::where('role', '=', 'agent')->where('is_delete', '=', 0)->count();
+        $data['TotalUser'] = User::where('role', '=', 'user')->where('is_delete', '=', 0)->count();
+        $data['TotalActive'] = User::where('status', '=', 'active')->where('is_delete', '=', 0)->count();
+        $data['TotalUserActive'] = User::where('status', '=', 'active')->where('role','=','user')->where('is_delete', '=', 0)->count();
+        $data['TotalInactive'] = User::where('status', '=', 'inactive')->where('is_delete', '=', 0)->count();
         return view('admin.users.list', $data);
     }
     public function AdminUserView($id)
@@ -144,7 +161,7 @@ class AdminController extends Controller
         $data['token'] = $token;
         return view('auth.ResetPassword', $data);
     }
-    public function AdminUsersDeleteUser($id,Request $request)
+    public function AdminUsersDeleteUser($id, Request $request)
     {
         $softDelete = User::find($id);
         $softDelete->is_delete = 1;
