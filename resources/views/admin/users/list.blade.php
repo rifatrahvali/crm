@@ -21,6 +21,7 @@
         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <form action="" method="get">
+                    @csrf
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="mb-3">
@@ -86,7 +87,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Ara</button>
-                    <a href="{{ url('admin/users') }}" class="btn btn-danger">Sil</a>
+                    <a href="{{ url('admin/users/list') }}" class="btn btn-danger">Sıfırla</a>
                 </form>
             </div>
         </div>
@@ -100,6 +101,7 @@
         <div class="card">
             <div class="card-body">
                 <form action="" method="get">
+                    @csrf
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
@@ -108,7 +110,7 @@
                                     <input type="text" name="genel" id="genel" class="form-control me-2"
                                         placeholder="Kullanıcı tablosu arama">
                                     <button type="submit" class="btn btn-primary me-2">Ara</button>
-                                    <a href="{{ url('admin/users') }}" class="btn btn-danger">Sıfırla</a>
+                                    <a href="{{ url('admin/users/list') }}" class="btn btn-danger">Sıfırla</a>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +145,14 @@
                                     @if (!empty($value->photo))
                                     <img style="width: 100; height:100;" src="{{ asset('upload/'.$value->photo) }}
                                         ">
+                                    @elseif (empty($value->photo))
+                                    <img style="width: 100; height:100;" src=" {{ $value->photo ?
+                                    url('upload/' . $value->photo) : url('upload/no-profile.png') }}
+                                    ">
+
                                     @endif
+
+
                                 </td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->username }}</td>
@@ -173,15 +182,19 @@
                                 <td>{{ date('d-m-Y',strtotime($value->created_at)) }}</td>
                                 <td>
                                     <a href="{{ url('admin/users/view/'.$value->id) }}"><span
-                                            class="btn btn-warning">Görüntüle</span></a>
-                                </td>
+                                            class="btn btn-info">Görüntüle</span></a>
+                                    <a href="{{ url('admin/users/edit/'.$value->id) }}"><span
+                                            class="btn btn-info">Düzenle</span></a>
+                                    <a href="{{ url('admin/users/delete/'.$value->id) }}"
+                                        onclick="return confirm('Silmek istediğinizden emin misiniz ?')"><span
+                                            class="btn btn-warning">Sil</span></a>
                             </tr>
                             @empty
                             <tr>
                                 <td colspan="100%">Kayıt bulunamadı.</td>
                             </tr>
                             @endforelse
-                            
+
                         </tbody>
                     </table>
 

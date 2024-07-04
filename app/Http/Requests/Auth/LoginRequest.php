@@ -49,11 +49,11 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        // Kullanıcı girişinde kullanılacak sütunlar - Users tablosundan
-        $user = User::where('username', $this->login)->orWhere('email', $this->login)->orWhere('phone', $this->login)->first();
+        // KORUYUCU FONKSIYONU CAGIRDIM
+        $user = $this->getUserForLogin();
 
         // kullanıcı değişkeni yoksa veya parolalar hashli değil ise
-        if (!$user || !Hash::check($this->password,$user->password)) {
+        if (!$user || !Hash::check($this->password, $user->password)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -61,9 +61,23 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        Auth::login($user,$this->boolean('remember'));
+        Auth::login($user, $this->boolean('remember'));
         RateLimiter::clear($this->throttleKey());
     }
+
+        // Kullanıcı tablosundaki isdelete 1 olanlar hiç bir şekilde panele giriş yapamıyorlar
+        // Kullanıcı girişinde kullanılacak sütunlar - Users tablosundan username,email ve phone sütunundndaki verilerle şifresini kullanarak girebilir
+        protected function getUserForLogin()
+        {
+            return User::where(function ($query) {
+                $query->where('username', $this->login)
+                      ->orWhere('email', $this->login)
+                      ->orWhere('phone', $this->login);
+            })
+            ->where('is_delete', 0)
+            ->first();
+        }
+    
 
     /**
      * Ensure the login request is not rate limited.
@@ -95,4 +109,6 @@ class LoginRequest extends FormRequest
     {
         return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
+
+
 }

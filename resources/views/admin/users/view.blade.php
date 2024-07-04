@@ -13,7 +13,7 @@
 <div class="card mb-3 shadow-lg border-0">
     <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
         <h2 class="card-title mb-0">Kullanıcı Profili</h2>
-        <a href="{{ url('admin/users') }}" class="btn btn-sm btn-danger"><i data-feather="corner-up-left"
+        <a href="{{ url('admin/users/list') }}" class="btn btn-sm btn-danger"><i data-feather="corner-up-left"
                 class="me-2"></i>Kullanıcı Listesine Dön</a>
     </div>
     <div class="card-body">

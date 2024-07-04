@@ -52,7 +52,9 @@ class User extends Authenticatable
     // her sayfada 5 kayıt olacak şekilde sayfalar.
     static public function getRecord(Request $request)
     {
-        $return = self::select('users.*')->orderBy('id', 'asc');
+        $return = self::select('users.*')
+            ->where('is_delete','=',0) // sadece 0 olanları listele //sil butonu 1'e çekiyor
+            ->orderBy('id', 'asc');
 
         // ARAMA BAŞLANGIÇ
 
