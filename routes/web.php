@@ -66,7 +66,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // Export - Kullanıcıları export edeceğim
     Route::get('admin/users/list/exportexcel',[AdminController::class,'UsersExportExcel']);
+    Route::get('admin/users/list/importexcel',[AdminController::class,'UsersImportExcel']);
 });
+
+
 // MIDDLEWARE KULLANARAK AGENT YETKISINE SAHIP KULLANICILARIN KULLANABILECEKLERI ROTALAR
 Route::middleware(['auth', 'role:agent'])->group(function () {
     Route::get('agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');

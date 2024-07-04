@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisteredMail;
 use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 class AdminController extends Controller
 {
@@ -115,6 +116,9 @@ class AdminController extends Controller
 
     public function UsersExportExcel() {
         return Excel::download(new UsersExport, 'users.xlsx');
+    }
+    public function UsersImportExcel() {
+        
     }
 
     public function AdminUserView($id)
