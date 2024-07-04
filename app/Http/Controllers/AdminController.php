@@ -97,8 +97,8 @@ class AdminController extends Controller
 
     public function AdminUsers(Request $request)
     {
+        // Filtreleme İşlemi
         // getRecord ' kodunu user.php modeline kendimiz yazdık.
-        // kod fazlalığı olmasın
         $data['getRecord'] = User::getRecord($request);
 
         // COUNT 

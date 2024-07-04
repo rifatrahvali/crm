@@ -53,7 +53,7 @@ class User extends Authenticatable
     static public function getRecord(Request $request)
     {
         $return = self::select('users.*')
-            ->where('is_delete','=',0) // sadece 0 olanları listele //sil butonu 1'e çekiyor
+            ->where('is_delete', '=', 0) // sadece 0 olanları listele //sil butonu 1'e çekiyor
             ->orderBy('id', 'asc');
 
         // ARAMA BAŞLANGIÇ
@@ -73,7 +73,7 @@ class User extends Authenticatable
                         ->orWhere('users.status', 'like', '%' . $genel . '%');
                 }
             });
-        } elseif(empty($request->input('genel'))) {
+        } elseif (empty($request->input('genel'))) {
             // Gelişmiş ARAMA BİTİŞ
             if (!empty($request->input('id'))) {
                 $return = $return->where('users.id', '=', $request->input('id'));
@@ -99,6 +99,12 @@ class User extends Authenticatable
             }
             if (!empty($request->input('status'))) {
                 $return = $return->where('users.status', 'like', '%' . $request->input('status') . '%');
+            }
+
+            // başlangıç tarihi - bitiş tarihi
+            if (!empty($request->input('startdate')) && !empty($request->input('enddate'))) {
+                $return = $return->where('users.created_at', '>=', $request->input('startdate'))
+                    ->where('users.created_at', '<=', $request->input('enddate'));
             }
             // ARAMA BİTİŞ
         }

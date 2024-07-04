@@ -5,7 +5,7 @@
     <div class="col-12 col-xl-12 mb-2">
         <div class="row d-flex flex-grow justify-content-center">
             <!-- Her bir düğme ve badge içeren div -->
-            
+
             <div class="col-auto custom-btn">
                 <button type="button" class="btn btn-secondary">
                     Admin Kullanıcılar <span class="badge bg-light text-dark">{{ $TotalAdmin }}</span>
@@ -114,9 +114,26 @@
                             <div class="mb-3">
                                 <label for="website" class="form-label">Website</label>
                                 <input type="text" name="website" id="website" class="form-control"
-                                    value="{{ request('website') }}">
+                                    value="{{ request('') }}">
                             </div>
                         </div>
+
+                        <div class="col-sm-2">
+                            <div class="mb-3">
+                                <label for="startdate" class="form-label">Başlangıç Tarihi</label>
+                                <input type="date" name="startdate" id="startdate" class="form-control"
+                                    value="{{ request('startdate') }}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="mb-3">
+                                <label for="enddate" class="form-label">Bitiş Tarihi</label>
+                                <input type="date" name="enddate" id="enddate" class="form-control"
+                                    value="{{ request('enddate') }}">
+                            </div>
+                        </div>
+
                     </div>
                     <button type="submit" class="btn btn-primary">Ara</button>
                     <a href="{{ url('admin/users/list') }}" class="btn btn-danger">Sıfırla</a>
@@ -181,10 +198,7 @@
                                     <img style="width: 100; height:100;" src=" {{ $value->photo ?
                                     url('upload/' . $value->photo) : url('upload/no-profile.png') }}
                                     ">
-
                                     @endif
-
-
                                 </td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->username }}</td>
