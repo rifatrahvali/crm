@@ -159,7 +159,8 @@
                                     <input type="text" name="genel" id="genel" class="form-control me-2"
                                         placeholder="Kullanıcı tablosu arama">
                                     <button type="submit" class="btn btn-primary me-2">Ara</button>
-                                    <a href="{{ url('admin/users/list') }}" class="btn btn-danger">Sıfırla</a>
+                                    <a href="{{ url('admin/users/list') }}" class="btn btn-danger me-2">Sıfırla</a>
+                                    <a href="{{ url('admin/users/list/exportexcel') }}" class="btn btn-success">Excel'e Aktar</a>
                                 </div>
                             </div>
                         </div>

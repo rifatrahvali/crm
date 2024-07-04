@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisteredMail;
-
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 class AdminController extends Controller
 {
 
@@ -111,6 +112,11 @@ class AdminController extends Controller
         $data['TotalInactive'] = User::where('status', '=', 'inactive')->where('is_delete', '=', 0)->count();
         return view('admin.users.list', $data);
     }
+
+    public function UsersExportExcel() {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
     public function AdminUserView($id)
     {
 

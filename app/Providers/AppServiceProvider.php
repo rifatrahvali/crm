@@ -14,7 +14,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
+        $this->app->singleton('view', function ($app) {
+            
+
+            return new \Illuminate\View\Factory(
+                $app['view.engine.resolver'],
+                $app['view.finder'],
+                $app['events'],
+                
+            );
+        });
+        
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,6 +63,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/email/sentDelete', [EmailController::class, 'EmailSentDelete']);
     Route::get('admin/email/read/{id}', [EmailController::class, 'AdminEmailRead']);
     Route::get('admin/email/ReadDelete/{id}', [EmailController::class, 'AdminEmailReadDelete']);
+
+    // Export - Kullanıcıları export edeceğim
+    Route::get('admin/users/list/exportexcel',[AdminController::class,'UsersExportExcel']);
 });
 // MIDDLEWARE KULLANARAK AGENT YETKISINE SAHIP KULLANICILARIN KULLANABILECEKLERI ROTALAR
 Route::middleware(['auth', 'role:agent'])->group(function () {

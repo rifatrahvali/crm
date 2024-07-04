@@ -122,5 +122,13 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    'aliases' => [
+
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Session' => Illuminate\Support\Facades\Session::class,
+        'Request' => Illuminate\Support\Facades\Request::class,
+        'Auth' => Illuminate\Support\Facades\Auth::class,
+        
+    ]
 
 ];

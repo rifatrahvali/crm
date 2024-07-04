@@ -87,7 +87,7 @@
                                 </div>
                                 <a href="{{ url('admin/email/read/'.$value->id) }}" class="email-list-detail">
                                     <div class="content">
-                                        <span class="from">{{ $value->subject}} </span>
+                                        <span class="from">{{ $value->subject }} </span>
                                         <p class="msg">{{ $value->descriptions}}</p>
                                     </div>
                                     <span class="date">
