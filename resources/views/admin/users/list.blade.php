@@ -136,7 +136,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($getRecord as $value)
+                            @forelse ($getRecord as $value)
                             <tr class="table">
                                 <td>{{ $value->id }}</td>
                                 <td>
@@ -176,7 +176,12 @@
                                             class="btn btn-warning">Görüntüle</span></a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="100%">Kayıt bulunamadı.</td>
+                            </tr>
+                            @endforelse
+                            
                         </tbody>
                     </table>
 
